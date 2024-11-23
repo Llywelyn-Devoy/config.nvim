@@ -54,7 +54,7 @@ syn keyword askInfix infix infixl infixr
 
 
 "highlight def link askKeywords Keyword
-highlight def link askKeywords String
+highlight def link askKeywords Keyword
 highlight def link askIdentifier Indentifier
 highlight def link askType Type
 highlight def link askString String

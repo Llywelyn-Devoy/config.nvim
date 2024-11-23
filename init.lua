@@ -1029,3 +1029,5 @@ vim.api.nvim_create_user_command('RunAsk', function()
 end, {})
 
 vim.keymap.set('n', '<tab>', ':RunAsk<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'vA', 'ggVG', { noremap = true, silent = true, desc = 'Visual select whole buffer' })
+vim.keymap.set('n', 'yA', 'ggVGy<c-o>', { noremap = true, silent = true, desc = 'Yank whole buffer' })

@@ -1,8 +1,3 @@
-local buffer_to_string = function()
-  local content = vim.api.nvim_buf_get_lines(0, 0, vim.api.nvim_buf_line_count(0), false)
-  return table.concat(content, '\n')
-end
-
 function string:split(delimiter)
   local result = {}
   local from = 1
@@ -16,18 +11,6 @@ function string:split(delimiter)
   return result
 end
 
-local split_into_lines = function(str)
-  local lines = {}
-  for line in str:gmatch '(.-)\n' do
-    table.insert(lines, line)
-  end
-  -- Handle the last line if it doesn't end with a newline
-  if str:sub(-1) == '\n' then
-    table.insert(lines, '')
-  end
-  return lines
-end
-
 vim.api.nvim_create_user_command('RunAsk', function()
   local filepath = vim.fn.expand '%:p'
   local ask_cmd = string.format('ask "%s"', filepath)
@@ -35,7 +18,10 @@ vim.api.nvim_create_user_command('RunAsk', function()
 
   local buf = vim.api.nvim_get_current_buf()
   local buf_len = vim.api.nvim_buf_line_count(buf)
-  local lines = split_into_lines(ask_output)
+  local lines = ask_output:split '\n'
+  -- for some reason a new line is added so remove
+  -- the last line
+  table.remove(lines, #lines)
 
   vim.api.nvim_buf_set_lines(buf, 0, buf_len, true, lines)
 end, {})

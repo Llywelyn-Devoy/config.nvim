@@ -16,6 +16,14 @@ syn keyword askKeywords
         \ proven
         \ data
         \ grammer
+        \ prop
+        \ Equivalence
+        \ Contradiction
+        \ ImpI
+        \ NotI
+        \ AndI
+        \ OrIL
+        \ OrIR
 "        \ Route
 
 " Match ask 
@@ -58,3 +66,21 @@ highlight def link askKeywords Keyword
 highlight def link askIdentifier Indentifier
 highlight def link askType Type
 highlight def link askString String
+
+syn keyword askKeywordsProven proven
+highlight askBackgroundProven ctermbg=green ctermfg=black guibg=green guifg=black
+" highlight askBackgroundProven ctermbg=magenta guibg=lightgreen
+syntax match askPatternProven /\<proven\>/ | highlight link askPatternProven askBackgroundProven
+highlight link askKeywordsProven askBackgroundProven
+
+syn keyword askKeywordsProve prove
+highlight askBackgroundProve ctermbg=red ctermfg=black guibg=red guifg=black
+" highlight askBackgroundProve ctermbg=magenta guibg=red
+syntax match askPatternProve /\<Prove\>/ | highlight link askPatternProve askBackgroundProve
+highlight link askKeywordsProve askBackgroundProve
+
+syn keyword askKeywordsGiven given
+" highlight askBackgroundGiven ctermbg=magenta guibg=lightpink
+highlight askBackgroundGiven ctermbg=magenta  ctermfg=black guibg=magenta guifg=black
+syntax match askPatternGiven /\<given\>/ | highlight link askPatternGiven askBackgroundGiven
+highlight link askKeywordsGiven askBackgroundGiven

@@ -989,3 +989,26 @@ end, {})
 vim.keymap.set('n', 'vA', 'ggVG', { noremap = true, silent = true, desc = 'Visual select whole buffer' })
 vim.keymap.set('n', 'yA', 'ggVGy<c-o>', { noremap = true, silent = true, desc = 'Yank whole buffer' })
 vim.keymap.set('n', 'S', ':%s/\\<<C-r><C-w>\\>//g<left><left>', { noremap = true, silent = true, desc = 'Replace all instances of word under cursor ' })
+-- new
+vim.keymap.set('n', '<C-c>', '<Esc>')
+
+vim.api.nvim_create_user_command('LDJumpToString', function(opts)
+  local direction = opts.fargs[1]
+  local needle = opts.fargs[2]
+
+  -- Set the search pattern register
+  vim.fn.setreg('/', needle)
+
+  -- Jump to the next match
+  if direction == 'n' then
+    vim.cmd 'normal! n'
+  elseif direction == 'N' then
+    vim.cmd 'normal! N'
+  end
+
+  -- Optional: clear the highlight if you don't want to keep search visuals
+  vim.cmd 'nohlsearch'
+end, { nargs = '+' })
+
+vim.keymap.set('n', 'f', ':LDJumpToString n ')
+vim.keymap.set('n', 'F', ':LDJumpToString N ')

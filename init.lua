@@ -942,6 +942,14 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+
+  {
+    'smoka7/hop.nvim',
+    version = '*',
+    opts = {
+      keys = 'etovxqpdygfblzhckisuran',
+    },
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1010,5 +1018,5 @@ vim.api.nvim_create_user_command('LDJumpToString', function(opts)
   vim.cmd 'nohlsearch'
 end, { nargs = '+' })
 
-vim.keymap.set('n', 'f', ':LDJumpToString n ')
-vim.keymap.set('n', 'F', ':LDJumpToString N ')
+-- vim.keymap.set('n', 'f', ':LDJumpToString n ')
+-- vim.keymap.set('n', 'F', ':LDJumpToString N ')

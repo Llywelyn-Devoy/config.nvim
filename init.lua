@@ -1000,23 +1000,5 @@ vim.keymap.set('n', 'S', ':%s/\\<<C-r><C-w>\\>//g<left><left>', { noremap = true
 -- new
 vim.keymap.set('n', '<C-c>', '<Esc>')
 
-vim.api.nvim_create_user_command('LDJumpToString', function(opts)
-  local direction = opts.fargs[1]
-  local needle = opts.fargs[2]
-
-  -- Set the search pattern register
-  vim.fn.setreg('/', needle)
-
-  -- Jump to the next match
-  if direction == 'n' then
-    vim.cmd 'normal! n'
-  elseif direction == 'N' then
-    vim.cmd 'normal! N'
-  end
-
-  -- Optional: clear the highlight if you don't want to keep search visuals
-  vim.cmd 'nohlsearch'
-end, { nargs = '+' })
-
--- vim.keymap.set('n', 'f', ':LDJumpToString n ')
--- vim.keymap.set('n', 'F', ':LDJumpToString N ')
+vim.keymap.set('n', 'f', ':HopWord<CR>')
+vim.keymap.set('n', 'F', ':HopWord<CR>')

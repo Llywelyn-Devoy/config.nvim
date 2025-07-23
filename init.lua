@@ -1000,5 +1000,13 @@ vim.keymap.set('n', 'S', ':%s/\\<<C-r><C-w>\\>//g<left><left>', { noremap = true
 -- new
 vim.keymap.set('n', '<C-c>', '<Esc>')
 
-vim.keymap.set('n', 'f', ':HopWord<CR>')
-vim.keymap.set('n', 'F', ':HopWord<CR>')
+local hop = require 'hop'
+local directions = require('hop.hint').HintDirection
+
+vim.keymap.set('', 'f', function()
+  hop.hint_char1 { current_line_only = false }
+end)
+
+vim.keymap.set('', 'F', function()
+  hop.hint_words()
+end)
